@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>MediaPipe Object Detection for web</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="text/javascript">
+
+    function onReady(callback) {
+      var intervalId = window.setInterval(function() {
+        if (document.getElementsByTagName('body')[0] !== undefined) {
+          window.clearInterval(intervalId);
+          callback.call(this);
+        }
+      }, 1000);
+    }
+
+    function setVisible(selector, visible) {
+      document.querySelector(selector).style.display = visible ? 'block' : 'none';
+    }
+
+  </script>
+</head>
+<body>
+
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+
+  <div id="overlay">
+    <div id="progstat"></div>
+    <div id="progress"></div>
+  </div>
+
+  <div class="loadingDiv">
+    <h1>Loading Assets ...</h1>
+  </div>
+
+  <div class="page">
+    <h1>MediaPipe Object Detector</h1>
+
+    <input type="file" id="file-input" />
+    <div id="image-wrapper" style="max-width: 50%; height: auto; position: relative;"></div>
+    <!-- partial -->
+    <script type="module" src="./script.js"></script>
+  </div>
+
+  <div id="loading">  </div>
+
+</body>
+</html>
