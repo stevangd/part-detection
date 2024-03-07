@@ -23,7 +23,7 @@ const createObjectDetector = async () => {
       modelAssetPath: `models/model.tflite`
     },
     // Minimum score the detector should look for between 0 to 1.
-    scoreThreshold: 0.5,
+    scoreThreshold: 0.25,
     // Either `IMAGE` or `VIDEO`.
     runningMode: 'IMAGE'
   });
