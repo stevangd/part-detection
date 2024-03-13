@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>MediaPipe Object Detection for web</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
   <script type="text/javascript">
 
     function onReady(callback) {
@@ -40,19 +41,24 @@
     <h1>MediaPipe Object Detector</h1>
 
     <ul>
-      <li><a class="active" href="index.html">Image</a></li>
-      <li><a href="camera.html">Camera</a></li>
+      <li><a href="index.html">Image</a></li>
+      <li><a class="active" href="camera.html">Camera</a></li>
     </ul>
 
 
     <div style="margin-top: 50px;">
-      <input type="file" id="file-input" />
-      <div id="image-wrapper" style="max-width: 50%; height: auto; position: relative;"></div>
+      <div id="liveView" class="videoView">
+        <button id="webcamButton" class="mdc-button mdc-button--raised">
+          <span class="mdc-button__ripple"></span>
+          <span class="mdc-button__label">ENABLE WEBCAM</span>
+        </button>
+        <video id="webcam" autoplay playsinline></video>
+      </div>
     </div>
 
 
     <!-- partial -->
-    <script type="module" src="js/image.js"></script>
+    <script type="module" src="js/camera.js"></script>
   </div>
 
   <div id="loading">  </div>
