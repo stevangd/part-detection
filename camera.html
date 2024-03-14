@@ -46,6 +46,30 @@
     </ul>
 
 
+
+    <div style="margin-top: 50px;">
+
+      <table>
+        
+        <tr>
+          <td>Score Threshold</td>
+          <td> : </td>
+          <td><input type="range" id="threshold" min="0" max="100" value="25"></td>
+          <td><input type="text" id="thresholdText" value="25"  size="1" readonly> %</td>
+        </tr>
+
+        <tr>
+          <td>Max Results</td>
+          <td> : </td>
+          <td><input type="range" id="resultMax" value="2" min="1" max="100"></td>
+          <td><input type="text" id="resultMaxText" value="25"  size="1" readonly></td>
+        </tr>
+
+      </table>      
+
+    </div>
+
+
     <div style="margin-top: 50px;">
       <div id="liveView" class="videoView">
         <button id="webcamButton" class="mdc-button mdc-button--raised">
@@ -63,5 +87,27 @@
 
   <div id="loading">  </div>
 
+  <script>
+  var thresholdslider = document.getElementById("threshold");
+  var thresholdText = document.getElementById("thresholdText");
+
+  var resultMaxslider = document.getElementById("resultMax");
+  var resultMaxText = document.getElementById("resultMaxText");
+
+
+  thresholdText.value=thresholdslider.value;
+
+  thresholdslider.oninput = function() {
+    thresholdText.value=thresholdslider.value;
+  }
+
+  resultMaxText.value=resultMaxslider.value;
+
+  resultMaxslider.oninput = function() {
+    resultMaxText.value=resultMaxslider.value;
+  }
+
+  </script>
+  
 </body>
 </html>

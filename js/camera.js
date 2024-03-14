@@ -4,23 +4,54 @@ let objectDetector;
 let runningMode = "VIDEO";
 // Initialize the object detector
 const initializeObjectDetector = async () => {
+
+    onReady(function() {
+        setVisible('.page', false);
+        setVisible('.loadingDiv', true);
+        setVisible('#loading', true);
+    });
+
+    var thresholdChange = document.getElementById('threshold').value;
+    var resultMaxChange = document.getElementById('resultMax').value;
+
     const vision = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.2/wasm");
     objectDetector = await ObjectDetector.createFromOptions(vision, {
         baseOptions: {
             modelAssetPath: `models/model.tflite`,
             delegate: "GPU"
         },
-        scoreThreshold: 0.25,
+        scoreThreshold: thresholdChange/100,
+        maxResults: resultMaxChange,
         runningMode: runningMode
     });
+
+    onReady(function() {
+        setVisible('.page', true);
+        setVisible('.loadingDiv', false);
+        setVisible('#loading', false);
+    });
+
 };
 initializeObjectDetector();
 
-onReady(function() {
-    setVisible('.page', true);
-    setVisible('.loadingDiv', false);
-    setVisible('#loading', false);
-});
+
+
+/////renew detector
+let thresholdInput;
+let resultMaxInput;
+
+thresholdInput = document.getElementById("threshold");
+thresholdInput.addEventListener("change", changeThrashold);
+
+resultMaxInput = document.getElementById("resultMax");
+resultMaxInput.addEventListener("change", changeThrashold);
+
+async function changeThrashold(event) {
+
+    await initializeObjectDetector();
+
+}
+
 
 
 let video = document.getElementById("webcam");
