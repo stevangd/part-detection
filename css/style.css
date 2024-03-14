@@ -22,7 +22,7 @@ em {
 video {
   clear: both;
   display: block;
-  width: 100%;
+  width: 1000px;
   height: auto;
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
