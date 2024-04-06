@@ -75,8 +75,8 @@ async function detectionImg() {
   const dataUrl = URL.createObjectURL(file)
 
   image.onload = () => {
-          // image.style.height = '100%'
-          // image.style.width = '100%'
+      image.style.height = '200%'
+      image.style.width = '200%'
       imageWrapper.append(image)
 
           // `ObjectDetector` operates on the natural height and width of
