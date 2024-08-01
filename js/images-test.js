@@ -23,7 +23,7 @@ const initializeObjectDetector = async () => {
 	const vision = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.2/wasm");
 	objectDetector = await ObjectDetector.createFromOptions(vision, {
 		baseOptions: {
-			modelAssetPath: `models/model.tflite`,
+			modelAssetPath: `models/model_part.tflite`,
 			delegate: "GPU"
 		},
 		scoreThreshold: thresholdChange/100,
@@ -51,7 +51,7 @@ async function img_find() {
         setVisible('#loading', false);
     });
     
-	var folderCb = "images/cheeseBamboo/";
+	var folderCb = "images/jig/";
 	var folderCs = "images/croissant/";
 	var folderKgc = "images/koreanGarlicCheese/";
 	var folderPk = "images/pastryKare/";
@@ -70,7 +70,7 @@ async function img_find() {
 
 					var image = folderCb + val;
 
-					detectionImg(image, index, 'cheese bamboo', totalImage)
+					detectionImg(image, index, 'jig', totalImage)
 
 					index = index+1;
 					totalImage = totalImage+1;
@@ -81,71 +81,71 @@ async function img_find() {
 	});
 
 	//////croissant
-	$.ajax({
-		url : folderCs,
-		success: function (data) {
+	// $.ajax({
+	// 	url : folderCs,
+	// 	success: function (data) {
 
-			var totalImage = 1;
+	// 		var totalImage = 1;
 
-			$(data).find("a").attr("href", function (i, val) {
-				if( val.match(/\.(jpe?g|png|gif)$/) ) { 
+	// 		$(data).find("a").attr("href", function (i, val) {
+	// 			if( val.match(/\.(jpe?g|png|gif)$/) ) { 
 
-					var image = folderCs + val;
+	// 				var image = folderCs + val;
 
-					detectionImg(image, index, 'croissant', totalImage)
+	// 				detectionImg(image, index, 'croissant', totalImage)
 
-					index = index+1;
-					totalImage = totalImage+1;
+	// 				index = index+1;
+	// 				totalImage = totalImage+1;
 					
-				} 
-			});
-		}
-	});
+	// 			} 
+	// 		});
+	// 	}
+	// });
 
 
 	//////korean garlic cheese
-	$.ajax({
-		url : folderKgc,
-		success: function (data) {
+	// $.ajax({
+	// 	url : folderKgc,
+	// 	success: function (data) {
 
-			var totalImage = 1;
+	// 		var totalImage = 1;
 
-			$(data).find("a").attr("href", function (i, val) {
-				if( val.match(/\.(jpe?g|png|gif)$/) ) { 
+	// 		$(data).find("a").attr("href", function (i, val) {
+	// 			if( val.match(/\.(jpe?g|png|gif)$/) ) { 
 
-					var image = folderKgc + val;
+	// 				var image = folderKgc + val;
 
-					detectionImg(image, index, 'korean garlic cheese', totalImage)
+	// 				detectionImg(image, index, 'korean garlic cheese', totalImage)
 
-					index = index+1;
-					totalImage = totalImage+1;
+	// 				index = index+1;
+	// 				totalImage = totalImage+1;
 					
-				} 
-			});
-		}
-	});
+	// 			} 
+	// 		});
+	// 	}
+	// });
 
 	//////pastry kare
-	$.ajax({
-		url : folderPk,
-		success: function (data) {
+	// $.ajax({
+	// 	url : folderPk,
+	// 	success: function (data) {
 
-			var totalImage = 1;
+	// 		var totalImage = 1;
 
-			$(data).find("a").attr("href", function (i, val) {
-				if( val.match(/\.(jpe?g|png|gif)$/) ) { 
+	// 		$(data).find("a").attr("href", function (i, val) {
+	// 			if( val.match(/\.(jpe?g|png|gif)$/) ) { 
 
-					var image = folderPk + val;
+	// 				var image = folderPk + val;
 
-					detectionImg(image, index, 'pastry kare', totalImage)
+	// 				detectionImg(image, index, 'pastry kare', totalImage)
 
-					index = index+1;
-					totalImage = totalImage+1;
+	// 				index = index+1;
+	// 				totalImage = totalImage+1;
 					
-				} 
-			});
-		}
-	});
+	// 			} 
+	// 		});
+	// 	}
+	// });
 	// const images = Array.from(document.getElementsByTagName("img")).map(i => i.src);
 
 	// console.log(images)
@@ -166,33 +166,33 @@ async function detectionImg(dataUrl, index, category, totalImage) {
 
 	///////////////set total
 
-	if (category == "cheese bamboo") {
+	if (category == "jig") {
 
 		$('#tatalCb').text(totalImage);
 
 
 	}
 
-	if (category == "croissant") {
+	// if (category == "croissant") {
 
-		$('#tatalCs').text(totalImage);
-
-
-	}
+	// 	$('#tatalCs').text(totalImage);
 
 
-	if (category == "korean garlic cheese") {
-
-		$('#tatalKgc').text(totalImage);
-
-	}
-
-	if (category == "pastry kare") {
-
-		$('#tatalPk').text(totalImage);
+	// }
 
 
-	}
+	// if (category == "korean garlic cheese") {
+
+	// 	$('#tatalKgc').text(totalImage);
+
+	// }
+
+	// if (category == "pastry kare") {
+
+	// 	$('#tatalPk').text(totalImage);
+
+
+	// }
 
 
 	image.onload = () => {
@@ -245,10 +245,10 @@ async function detectionImg(dataUrl, index, category, totalImage) {
 
 			/////////////////////////////////////check validation
 
-			if (category == "cheese bamboo") {
+			if (category == "jig") {
 
 				
-				if (labelName == "cheese bamboo") {
+				if (labelName == "jig") {
 
 					var validCb = $('#validCb').text();
 
@@ -266,71 +266,71 @@ async function detectionImg(dataUrl, index, category, totalImage) {
 				}
 			}
 
-			if (category == "croissant") {
+			// if (category == "croissant") {
 
 
-				if (labelName == "croissant") {
+			// 	if (labelName == "croissant") {
 
-					var validCs = $('#validCs').text();
+			// 		var validCs = $('#validCs').text();
 
-					var total = parseInt(validCs) + 1;
+			// 		var total = parseInt(validCs) + 1;
 
-					$('#validCs').text(total);
-				}
+			// 		$('#validCs').text(total);
+			// 	}
 
-				else{
+			// 	else{
 
-					var failCs = $('#failCs').text();
+			// 		var failCs = $('#failCs').text();
 
-					var failTotal = parseInt(failCs) + 1;
+			// 		var failTotal = parseInt(failCs) + 1;
 
-					$('#failCs').text(failTotal);
-				}
-			}
-
-
-			if (category == "korean garlic cheese") {
+			// 		$('#failCs').text(failTotal);
+			// 	}
+			// }
 
 
-				if (labelName == "korean garlic cheese") {
+			// if (category == "korean garlic cheese") {
 
-					var validKgc = $('#validKgc').text();
 
-					var total = parseInt(validKgc) + 1;
+			// 	if (labelName == "korean garlic cheese") {
 
-					$('#validKgc').text(total);
-				}
+			// 		var validKgc = $('#validKgc').text();
 
-				else{
+			// 		var total = parseInt(validKgc) + 1;
 
-					var failKgc = $('#failKgc').text();
+			// 		$('#validKgc').text(total);
+			// 	}
 
-					var failTotal = parseInt(failKgc) + 1;
+			// 	else{
 
-					$('#failKgc').text(failTotal);
-				}
-			}
+			// 		var failKgc = $('#failKgc').text();
 
-			if (category == "pastry kare") {
+			// 		var failTotal = parseInt(failKgc) + 1;
 
-				if (labelName == "pastry kare") {
+			// 		$('#failKgc').text(failTotal);
+			// 	}
+			// }
 
-					var validPk = $('#validPk').text();
+			// if (category == "pastry kare") {
 
-					var total = parseInt(validPk) + 1;
+			// 	if (labelName == "pastry kare") {
 
-					$('#validPk').text(total);
-				}
+			// 		var validPk = $('#validPk').text();
 
-				else{
+			// 		var total = parseInt(validPk) + 1;
 
-					var failPk = $('#failPk').text();
+			// 		$('#validPk').text(total);
+			// 	}
 
-					var failTotal = parseInt(failPk) + 1;
+			// 	else{
 
-					$('#failPk').text(failTotal);
-				}
-			}
+			// 		var failPk = $('#failPk').text();
+
+			// 		var failTotal = parseInt(failPk) + 1;
+
+			// 		$('#failPk').text(failTotal);
+			// 	}
+			// }
 
 
 
@@ -344,7 +344,7 @@ async function detectionImg(dataUrl, index, category, totalImage) {
 
 		if (check == false) {
 
-			if (category == "cheese bamboo") {
+			if (category == "jig") {
 
 
 				var failCb = $('#failCb').text();
@@ -355,41 +355,41 @@ async function detectionImg(dataUrl, index, category, totalImage) {
 
 			}
 
-			if (category == "croissant") {
+			// if (category == "croissant") {
 
 
-				var failCs = $('#failCs').text();
+			// 	var failCs = $('#failCs').text();
 
-				var failTotal = parseInt(failCs) + 1;
+			// 	var failTotal = parseInt(failCs) + 1;
 
-				$('#failCs').text(failTotal);
+			// 	$('#failCs').text(failTotal);
 
-			}
-
-
-			if (category == "korean garlic cheese") {
+			// }
 
 
-
-				var failKgc = $('#failKgc').text();
-
-				var failTotal = parseInt(failKgc) + 1;
-
-				$('#failKgc').text(failTotal);
-
-			}
-
-			if (category == "pastry kare") {
+			// if (category == "korean garlic cheese") {
 
 
 
-				var failPk = $('#failPk').text();
+			// 	var failKgc = $('#failKgc').text();
 
-				var failTotal = parseInt(failPk) + 1;
+			// 	var failTotal = parseInt(failKgc) + 1;
 
-				$('#failPk').text(failTotal);
+			// 	$('#failKgc').text(failTotal);
 
-			}
+			// }
+
+			// if (category == "pastry kare") {
+
+
+
+			// 	var failPk = $('#failPk').text();
+
+			// 	var failTotal = parseInt(failPk) + 1;
+
+			// 	$('#failPk').text(failTotal);
+
+			// }
 
 		}
 	}

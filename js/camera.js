@@ -17,7 +17,7 @@ const initializeObjectDetector = async () => {
     const vision = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.2/wasm");
     objectDetector = await ObjectDetector.createFromOptions(vision, {
         baseOptions: {
-            modelAssetPath: `models/model.tflite`,
+            modelAssetPath: `models/model_part.tflite`,
             delegate: "GPU"
         },
         scoreThreshold: thresholdChange/100,
